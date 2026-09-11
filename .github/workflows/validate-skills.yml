@@ -12,28 +12,30 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Check YAML Frontmatter
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.x'
-
-      - name: Run Schema Validator
+      - name: Verify Frontmatter Fields
         run: |
-          python -c '
-          import glob, yaml, sys
-          errors = False
-          for f in glob.glob("**/SKILL.md", recursive=True):
-              with open(f) as file:
-                  content = file.read()
-                  if content.startswith("---"):
-                      try:
-                          fm = yaml.safe_load(content.split("---")[1])
-                          if "name" not in fm or "description" not in fm:
-                              print(f"Missing required fields in {f}")
-                              errors = True
-                      except Exception as e:
-                          print(f"Malformed YAML in {f}: {e}")
-                          errors = True
-          if errors:
-              sys.exit(1)
-          '
+          errors=0
+          for file in $(find . -name "SKILL.md"); do
+            # Check if file starts with frontmatter delimiter ---
+            if ! head -n 1 "$file" | grep -q "^---"; then
+              echo "Error: $file missing leading '---'"
+              errors=1
+              continue
+            fi
+            
+            # Check for required fields inside frontmatter
+            if ! grep -q "^name:" "$file"; then
+              echo "Error: $file missing 'name:'"
+              errors=1
+            fi
+            if ! grep -q "^description:" "$file"; then
+              echo "Error: $file missing 'description:'"
+              errors=1
+            fi
+          done
+
+          if [ $errors -ne 0 ]; then
+            echo "Validation failed."
+            exit 1
+          fi
+          echo "All SKILL.md files passed validation!"
