@@ -130,7 +130,7 @@ Rules for build context management, monorepo patterns, environment variable desi
   # compose.yaml (base — shared configuration)
   services:
     api:
-      image: myapp/api:${TAG:-latest}
+      image: myapp/api:${TAG:-1.4.2}
       restart: unless-stopped
       healthcheck:
         test: ['CMD', 'curl', '-f', 'http://localhost:3000/health']

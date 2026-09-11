@@ -23,15 +23,15 @@ agents: ['Frontend Engineer', 'Test Writer', 'Backend Engineer', 'Code Reviewer'
 argument-hint: 'Attach or paste a UI image (screenshot, wireframe, or mockup) to analyze and build'
 handoffs:
   - label: 'Implement Components'
-    agent: Frontend Engineer
+    agent: frontend-engineer
     prompt: 'Implement the components described in the delegation brief above'
     send: false
   - label: 'Write Tests'
-    agent: Test Writer
+    agent: test-writer
     prompt: 'Write tests for the components described in the brief above'
     send: false
   - label: 'Review the Plan'
-    agent: Code Reviewer
+    agent: code-reviewer
     prompt: 'Review the implementation plan and flag any concerns before we build'
     send: false
 model: Claude Opus 5 (copilot)

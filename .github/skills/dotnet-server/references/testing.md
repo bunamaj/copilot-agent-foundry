@@ -31,6 +31,10 @@ public class OrderApiTests : IClassFixture<WebApplicationFactory<Program>>
 ```csharp
 public class CustomFactory : WebApplicationFactory<Program>
 {
+    private readonly SqliteConnection _connection = new("DataSource=:memory:");
+
+    public CustomFactory() => _connection.Open();
+
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         builder.ConfigureServices(services =>
@@ -41,10 +45,16 @@ public class CustomFactory : WebApplicationFactory<Program>
             if (descriptor is not null) services.Remove(descriptor);
 
             services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlite("DataSource=:memory:"));
+                options.UseSqlite(_connection));
         });
 
         builder.UseEnvironment("Testing");
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing) _connection.Dispose();
+        base.Dispose(disposing);
     }
 }
 ```

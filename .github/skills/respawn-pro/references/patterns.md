@@ -122,8 +122,7 @@ Respawn works with Testcontainers — create the container in the fixture, then 
 ```csharp
 public class PostgresFixture : IAsyncLifetime
 {
-    private readonly PostgreSqlContainer _container = new PostgreSqlBuilder()
-        .WithImage("postgres:16")
+    private readonly PostgreSqlContainer _container = new PostgreSqlBuilder("postgres:16")
         .Build();
 
     private Respawner _respawner = null!;

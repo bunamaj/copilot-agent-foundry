@@ -31,23 +31,23 @@ tools:
   ]
 handoffs:
   - label: '📖 Research with Context7'
-    agent: Context7-Expert
+    agent: context7
     prompt: 'Research [topic] for the full-stack implementation'
     send: false
   - label: '🔍 Request Code Review'
-    agent: Code Reviewer
+    agent: code-reviewer
     prompt: 'Review the cross-layer changes for correctness, type safety, and consistency'
     send: false
   - label: '🧪 Generate Tests'
-    agent: Test Writer
+    agent: test-writer
     prompt: 'Write integration and unit tests for this full-stack feature'
     send: false
   - label: '🏗️ Consult Architect'
-    agent: Architect
+    agent: architect
     prompt: 'Evaluate the system design for this cross-layer change'
     send: false
   - label: '🚀 Hand Off to Infrastructure'
-    agent: Software Engineer Agent
+    agent: software-engineer-agent-v1
     prompt: 'Deploy or configure infrastructure for this feature'
     send: false
 model: Claude Sonnet 5 (copilot)
@@ -59,17 +59,13 @@ model: Claude Sonnet 5 (copilot)
 >
 > | Detect                                                                             | Skill                                                                 |
 > | ---------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
-> | `fastify` in package.json or `*.ts` imports from `fastify`                         | [fastify-pro](../skills/fastify-pro/SKILL.md)                         |
-> | Supabase config, `supabase/` dir, or `@supabase/supabase-js` in deps               | [supabase-pro](../skills/supabase-pro/SKILL.md)                       |
-> | `pb_migrations/`, `pocketbase` binary, or PocketBase SDK in deps                   | [pocketbase-pro](../skills/pocketbase-pro/SKILL.md)                   |
 > | `*.csproj`, `Program.cs`, or `appsettings.json`                                    | [dotnet-server](../skills/dotnet-server/SKILL.md)                     |
 > | .NET Framework migration context (`web.config`, `Global.asax`)                     | [dotnet-migration](../skills/dotnet-migration/SKILL.md)               |
-> | `go.mod`, `go.sum`, or `*.go` files                                                | [golang-api](../skills/golang-api/SKILL.md)                           |
-> | `vue` in package.json deps, `*.vue` files, or Vite with Vue plugin                 | [vue-pro](../skills/vue-pro/SKILL.md)                                 |
-> | Service worker files, `manifest.json`/`manifest.webmanifest`, or `vite-plugin-pwa` | [pwa-pro](../skills/pwa-pro/SKILL.md)                                 |
-> | `Dockerfile`, `docker-compose.yml`, or `.dockerignore`                             | [docker-pro](../skills/docker-pro/SKILL.md)                           |
-> | `Caddyfile` or Caddy config JSON                                                   | [caddy-pro](../skills/caddy-pro/SKILL.md)                             |
-> | Monorepo with workspace packages                                                   | [link-workspace-packages](../skills/link-workspace-packages/SKILL.md) |
+> | `MediatR` in .csproj PackageReference or `using MediatR` statements                | [mediatr-pro](../skills/mediatr-pro/SKILL.md)                         |
+> | `Microsoft.EntityFrameworkCore` in .csproj, `DbContext` subclass, or `dotnet ef` migrations | [ef-core-pro](../skills/ef-core-pro/SKILL.md) |
+> | `react@^19` or `react@19.x` in package.json dependencies, or `*.tsx`/`*.jsx` files in a React project | [react19-pro](../skills/react19-pro/SKILL.md) |
+> | `react-native` in package.json, `metro.config.*`, `app.json` (Expo), or `expo` in deps | [react-native-pro](../skills/react-native-pro/SKILL.md) |
+> | `Dockerfile`, `compose.yaml`, `compose.yml`, `docker-compose.yaml`, `docker-compose.yml`, or `.dockerignore` | [docker-pro](../skills/docker-pro/SKILL.md) |
 >
 > Load **every** matching skill. When reviewing or writing code covered by a loaded skill, follow that skill's instructions.
 

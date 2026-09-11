@@ -31,23 +31,23 @@ tools:
   ]
 handoffs:
   - label: '📖 Research with Context7'
-    agent: Context7-Expert
+    agent: context7
     prompt: 'Research [topic] for the frontend implementation'
     send: false
   - label: '🔍 Code Review'
-    agent: Code Reviewer
+    agent: code-reviewer
     prompt: 'Review the frontend changes for quality, accessibility, and performance'
     send: false
   - label: '🧪 Generate Tests'
-    agent: Test Writer
+    agent: test-writer
     prompt: 'Write tests for the frontend component or feature'
     send: false
   - label: '🔌 Backend Integration'
-    agent: Backend Engineer
+    agent: backend-engineer
     prompt: 'Coordinate API integration needs for the frontend feature'
     send: false
   - label: '🏗️ Build & Deploy'
-    agent: Software Engineer Agent
+    agent: software-engineer-agent-v1
     prompt: 'Assist with frontend build configuration or deployment pipeline'
     send: false
 model: Claude Sonnet 5 (copilot)
@@ -59,8 +59,6 @@ model: Claude Sonnet 5 (copilot)
 >
 > | Detect                                                                                                      | Skill                                           |
 > | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
-> | `vue` in package.json dependencies, `*.vue` files, or `vite.config.ts` with Vue plugin                      | [vue-pro](../skills/vue-pro/SKILL.md)           |
-> | Service worker files, `manifest.json`/`manifest.webmanifest`, or `vite-plugin-pwa` in deps                  | [pwa-pro](../skills/pwa-pro/SKILL.md)           |
 > | `react@^19` or `react@19.x` in package.json dependencies, or `*.tsx`/`*.jsx` files in a React project       | [react19-pro](../skills/react19-pro/SKILL.md)   |
 > | `react-native` in package.json, `metro.config.*`, `app.json` (Expo), or `expo` in deps | [react-native-pro](../skills/react-native-pro/SKILL.md) |
 >

@@ -26,11 +26,11 @@ tools:
   ]
 handoffs:
   - label: Research Best Practices
-    agent: Context7-Expert
+    agent: context7
     prompt: I need to verify if the code I'm reviewing follows best practices for [specify library/framework/pattern]. Can you help me understand the recommended patterns?
     send: false
   - label: Generate Tests
-    agent: Test Writer
+    agent: test-writer
     prompt: Code review identified missing test coverage. Please generate comprehensive tests for the following areas:\n\n[Areas needing tests]
     send: false
 model: Claude Opus 5 (copilot)
@@ -42,23 +42,11 @@ model: Claude Opus 5 (copilot)
 >
 > | Detect                                                               | Skill                                                       |
 > | -------------------------------------------------------------------- | ----------------------------------------------------------- |
-> | `fastify` in package.json or `*.ts` imports from `fastify`           | [fastify-pro](../skills/fastify-pro/SKILL.md)               |
-> | Supabase config, `supabase/` dir, or `@supabase/supabase-js` in deps | [supabase-pro](../skills/supabase-pro/SKILL.md)             |
-> | `pb_migrations/`, `pocketbase` binary, or PocketBase SDK in deps     | [pocketbase-pro](../skills/pocketbase-pro/SKILL.md)         |
 > | `*.csproj`, `Program.cs`, or `appsettings.json`                      | [dotnet-server](../skills/dotnet-server/SKILL.md)           |
 > | `Microsoft.EntityFrameworkCore` in .csproj, `DbContext` subclass, or `dotnet ef` migrations | [ef-core-pro](../skills/ef-core-pro/SKILL.md) |
 > | .NET Framework migration context (`web.config`, `Global.asax`)       | [dotnet-migration](../skills/dotnet-migration/SKILL.md)     |
-> | `go.mod`, `go.sum`, or `*.go` files                                  | [golang-api](../skills/golang-api/SKILL.md)                 |
-> | `*.vue` files or `vue` in package.json                               | [vue-pro](../skills/vue-pro/SKILL.md)                       |
-> | PWA manifest, service worker, or `vite-plugin-pwa` in deps           | [pwa-pro](../skills/pwa-pro/SKILL.md)                       |
-> | `*.swift` files or SwiftUI imports                                   | [swiftui-pro](../skills/swiftui-pro/SKILL.md)               |
-> | `build.gradle.kts`, Kotlin source, or Android manifest               | [android-kotlin-pro](../skills/android-kotlin-pro/SKILL.md) |
-> | `pubspec.yaml` or Flutter/Dart source                                | [flutter-pro](../skills/flutter-pro/SKILL.md)               |
 > | `react-native` in package.json, `metro.config.*`, `app.json` (Expo), or `expo` in deps | [react-native-pro](../skills/react-native-pro/SKILL.md) |
-> | Mobile UI patterns in iOS or Android code                            | [mobile-uiux-pro](../skills/mobile-uiux-pro/SKILL.md)       |
-> | `Dockerfile`, `docker-compose.yml`, or `.dockerignore`               | [docker-pro](../skills/docker-pro/SKILL.md)                 |
-> | `Caddyfile` or Caddy configuration                                   | [caddy-pro](../skills/caddy-pro/SKILL.md)                   |
-> | API architecture, service layers, or external API integrations       | [api-design-pro](../skills/api-design-pro/SKILL.md)         |
+> | `Dockerfile`, `compose.yaml`, `compose.yml`, `docker-compose.yaml`, `docker-compose.yml`, or `.dockerignore` | [docker-pro](../skills/docker-pro/SKILL.md) |
 >
 > Load **every** matching skill. When reviewing code covered by a loaded skill, consult that skill's instructions for framework-specific review criteria, conventions, and anti-patterns.
 

@@ -42,13 +42,10 @@ await context.Orders
     .Where(o => o.Status == OrderStatus.Draft && o.CreatedAt < cutoff)
     .ExecuteDeleteAsync(ct);
 
-// ✅ EF 10: regular lambda body — conditionals allowed
-await context.Blogs.ExecuteUpdateAsync(s =>
-{
-    s.SetProperty(b => b.Views, b => b.Views + 1);
-    if (nameChanged)
-        s.SetProperty(b => b.Name, newName);
-}, ct);
+// ✅ Expression-bodied setter chain — keep conditionals inside expressions
+await context.Blogs.ExecuteUpdateAsync(s => s
+    .SetProperty(b => b.Views, b => b.Views + 1)
+    .SetProperty(b => b.Name, b => nameChanged ? newName : b.Name), ct);
 
 // ✅ EF 10: works on complex-type JSON columns too
 await context.Customers.ExecuteUpdateAsync(s =>

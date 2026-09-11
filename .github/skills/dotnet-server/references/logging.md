@@ -40,8 +40,11 @@
 
   ```csharp
   builder.Services.AddHealthChecks()
-      .AddDbContextCheck<AppDbContext>()
-      .AddUrlGroup(new Uri("https://external-api.example.com/health"), "external-api");
+      .AddDbContextCheck<AppDbContext>(tags: ["ready"])
+      .AddUrlGroup(
+          new Uri("https://external-api.example.com/health"),
+          name: "external-api",
+          tags: ["ready"]);
 
   app.MapHealthChecks("/health/ready", new HealthCheckOptions
   {

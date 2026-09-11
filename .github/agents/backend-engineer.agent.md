@@ -31,27 +31,27 @@ tools:
   ]
 handoffs:
   - label: '📖 Research with Context7'
-    agent: Context7-Expert
+    agent: context7
     prompt: 'Research [topic] for the backend implementation'
     send: false
   - label: '🔍 Request Code Review'
-    agent: Code Reviewer
+    agent: code-reviewer
     prompt: 'Review the backend changes for correctness, security, and adherence to conventions'
     send: false
   - label: '🧪 Generate Tests'
-    agent: Test Writer
+    agent: test-writer
     prompt: 'Write tests for the backend code that was just implemented'
     send: false
   - label: '🖥️ Frontend Coordination'
-    agent: Frontend Engineer
+    agent: frontend-engineer
     prompt: 'Implement the frontend changes needed to integrate with the backend API'
     send: false
   - label: '🐳 Infrastructure Support'
-    agent: Software Engineer Agent
+    agent: software-engineer-agent-v1
     prompt: 'Review or update Docker/deployment configuration for the backend service'
     send: false
   - label: '📐 API Design Review'
-    agent: Architect
+    agent: architect
     prompt: 'Review the API design for consistency, scalability, and best practices'
     send: false
 model: Claude Sonnet 5 (copilot)
@@ -63,12 +63,8 @@ model: Claude Sonnet 5 (copilot)
 >
 > | Detect                                                               | Skill                                                   |
 > | -------------------------------------------------------------------- | ------------------------------------------------------- |
-> | `fastify` in package.json or `*.ts` imports from `fastify`           | [fastify-pro](../skills/fastify-pro/SKILL.md)           |
-> | Supabase config, `supabase/` dir, or `@supabase/supabase-js` in deps | [supabase-pro](../skills/supabase-pro/SKILL.md)         |
-> | `pb_migrations/`, `pocketbase` binary, or PocketBase SDK in deps     | [pocketbase-pro](../skills/pocketbase-pro/SKILL.md)     |
 > | `*.csproj`, `Program.cs`, or `appsettings.json`                      | [dotnet-server](../skills/dotnet-server/SKILL.md)       |
 > | .NET Framework migration context (web.config, Global.asax)           | [dotnet-migration](../skills/dotnet-migration/SKILL.md) |
-> | `go.mod`, `go.sum`, or `*.go` files                                  | [golang-api](../skills/golang-api/SKILL.md)             |
 > | `MediatR` in .csproj PackageReference or `using MediatR` statements  | [mediatr-pro](../skills/mediatr-pro/SKILL.md)           |
 > | `Microsoft.EntityFrameworkCore` in .csproj, `DbContext` subclass, or `dotnet ef` migrations | [ef-core-pro](../skills/ef-core-pro/SKILL.md) |
 >

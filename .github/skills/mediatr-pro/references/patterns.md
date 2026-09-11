@@ -186,7 +186,7 @@ CQRS separation, handler design, request modeling, and common anti-patterns.
 
   **Why:** Handler-to-handler calls via the mediator hide dependencies, bypass the pipeline for the caller's intent, and make the call graph untraceable.
 
-- **Do not over-use notifications.** Notifications are fire-and-forget fan-out. Do not use them for operations where the sender needs to know the outcome.
+- **Do not over-use notifications.** Notifications are awaited fan-out by default. Do not use them for operations where the sender needs a result shape; only treat them as fire-and-forget when you explicitly queue them or use a custom background publisher.
 
   ```csharp
   // Before — using notification where a command is appropriate

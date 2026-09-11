@@ -162,7 +162,7 @@ Rules for service design, networking, volumes, profiles, watch mode, secrets, an
         - '80:80'
 
     api:
-      image: myapi:latest
+      image: myapi:1.0.0
       networks:
         - frontend-net
         - backend-net

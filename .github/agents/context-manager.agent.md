@@ -15,15 +15,15 @@ tools:
   ]
 handoffs:
   - label: Send Packet to Backend Engineer
-    agent: Backend Engineer
+    agent: backend-engineer
     prompt: Use only the context packet above. Do not re-scan the repository.
     send: false
   - label: Send Packet to Frontend Engineer
-    agent: Frontend Engineer
+    agent: frontend-engineer
     prompt: Use only the context packet above. Do not re-scan the repository.
     send: false
   - label: Send Packet to Code Reviewer
-    agent: Code Reviewer
+    agent: code-reviewer
     prompt: Review using only the diffs in the context packet above.
     send: false
 model: Gemini 3.6 Flash (copilot)

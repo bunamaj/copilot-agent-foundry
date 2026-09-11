@@ -88,11 +88,13 @@ private sealed class CustomWebApplicationFactory : WebApplicationFactory<Program
 public sealed class WeatherForecastFixture : IAsyncLifetime
 {
     private const string DbAlias = "weatherForecastStorage";
+    private const string DbPassword = "TestPassword123!";
 
     private readonly INetwork _network = new NetworkBuilder().Build();
 
     private readonly MsSqlContainer _db = new MsSqlBuilder("mcr.microsoft.com/mssql/server:2022-CU14-ubuntu-22.04")
-        .WithNetwork(new NetworkBuilder().Build())    // replaced below
+        .WithPassword(DbPassword)
+        .WithNetwork(_network)
         .WithNetworkAliases(DbAlias)
         .Build();
 
@@ -102,13 +104,16 @@ public sealed class WeatherForecastFixture : IAsyncLifetime
     {
         var connectionString =
             $"server={DbAlias};user id={MsSqlBuilder.DefaultUsername};" +
-            $"password={MsSqlBuilder.DefaultPassword};database={MsSqlBuilder.DefaultDatabase}";
+            $"password={DbPassword};database={MsSqlBuilder.DefaultDatabase};trustServerCertificate=true";
 
-        _app = new ContainerBuilder().WithImage("weatherforecast:latest")
+        _app = new ContainerBuilder().WithImage("weatherforecast:1.0.0")
             .WithNetwork(_network)
             .WithPortBinding(443, true)
             .WithEnvironment("ASPNETCORE_URLS", "https://+")
             .WithEnvironment("ConnectionStrings__DefaultConnection", connectionString)
+            .WithWaitStrategy(Wait.ForUnixContainer().UntilInternalTcpPortIsAvailable(443))
+            .Build();
+    }
             .WithWaitStrategy(Wait.ForUnixContainer().UntilInternalTcpPortIsAvailable(443))
             .Build();
     }

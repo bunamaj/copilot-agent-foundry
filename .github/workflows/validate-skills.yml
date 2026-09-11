@@ -14,28 +14,46 @@ jobs:
 
       - name: Verify Frontmatter Fields
         run: |
-          errors=0
-          for file in $(find . -name "SKILL.md"); do
-            # Check if file starts with frontmatter delimiter ---
-            if ! head -n 1 "$file" | grep -q "^---"; then
-              echo "Error: $file missing leading '---'"
-              errors=1
-              continue
-            fi
-            
-            # Check for required fields inside frontmatter
-            if ! grep -q "^name:" "$file"; then
-              echo "Error: $file missing 'name:'"
-              errors=1
-            fi
-            if ! grep -q "^description:" "$file"; then
-              echo "Error: $file missing 'description:'"
-              errors=1
-            fi
-          done
+          ruby <<'RUBY'
+          require "yaml"
 
-          if [ $errors -ne 0 ]; then
-            echo "Validation failed."
-            exit 1
-          fi
-          echo "All SKILL.md files passed validation!"
+          errors = 0
+
+          Dir.glob("**/SKILL.md").sort.each do |file|
+            lines = File.readlines(file, chomp: false)
+
+            unless lines.first&.strip == "---"
+              puts "Error: #{file} missing leading '---'"
+              errors = 1
+              next
+            end
+
+            closing_offset = lines[1..]&.find_index { |line| line.strip == "---" }
+            if closing_offset.nil?
+              puts "Error: #{file} missing closing '---'"
+              errors = 1
+              next
+            end
+
+            closing_index = closing_offset + 1
+            frontmatter = lines[1...closing_index].join
+
+            begin
+              data = YAML.safe_load(frontmatter, permitted_classes: [], aliases: false) || {}
+            rescue Psych::SyntaxError => e
+              puts "Error: #{file} has invalid YAML frontmatter (#{e.message})"
+              errors = 1
+              next
+            end
+
+            %w[name description].each do |field|
+              if data[field].to_s.strip.empty?
+                puts "Error: #{file} missing frontmatter field '#{field}'"
+                errors = 1
+              end
+            end
+          end
+
+          abort("Validation failed.") unless errors.zero?
+          puts "All SKILL.md files passed validation!"
+          RUBY

@@ -51,9 +51,11 @@ RUN dotnet publish -c Release -o /app
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 WORKDIR /app
-COPY --from=build /app .
+RUN adduser --disabled-password --home /app --gecos "" appuser
+COPY --from=build --chown=appuser:appuser /app .
 EXPOSE 8080
 ENV ASPNETCORE_URLS=http://+:8080
+USER appuser
 ENTRYPOINT ["dotnet", "MyApp.dll"]
 ```
 

@@ -1,6 +1,6 @@
 # React 19 Performance & React Compiler
 
-> **Status in this workspace:** React Compiler is **NOT currently installed** (`vite.config.ts` has no `babel-plugin-react-compiler` entry). Until installed, treat the "Compiler handles automatically" guidance below as aspirational — manual `useMemo`, `useCallback`, and `React.memo` rules still apply in full.
+> **Check the consuming workspace first:** inspect the build configuration and installed packages before assuming React Compiler is absent. If `babel-plugin-react-compiler` (or equivalent framework-integrated support) is already enabled, follow the compiler-specific guidance below; otherwise keep the manual `useMemo`, `useCallback`, and `React.memo` rules in place.
 
 ---
 
@@ -8,7 +8,7 @@
 
 React Compiler is a **build-time tool** that automatically inserts memoization, eliminating the need to manually write `useMemo`, `useCallback`, and `React.memo` in most cases.
 
-### Installation (Vite — this workspace)
+### Installation (Vite — when the compiler is not already enabled)
 
 ```bash
 npm install -D babel-plugin-react-compiler@latest eslint-plugin-react-compiler@latest

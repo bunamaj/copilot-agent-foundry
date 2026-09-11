@@ -19,7 +19,7 @@ tools:
 agents: ['Context7-Expert']
 handoffs:
   - label: Review with Code Reviewer
-    agent: Code Reviewer
+    agent: code-reviewer
     prompt: Review the agent/skill I just created for completeness, accuracy, and format adherence.
     send: false
 model: Claude Opus 5 (copilot)

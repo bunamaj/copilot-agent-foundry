@@ -29,23 +29,23 @@ tools:
   ]
 handoffs:
   - label: '📖 Research with Context7'
-    agent: Context7-Expert
+    agent: context7
     prompt: 'Research [topic] for architecture design'
     send: false
   - label: '⚙️ Implement Backend Design'
-    agent: Backend Engineer
+    agent: backend-engineer
     prompt: 'Implement this backend architecture design: [design summary]'
     send: false
   - label: '🖼️ Implement Frontend Design'
-    agent: Frontend Engineer
+    agent: frontend-engineer
     prompt: 'Implement this frontend architecture design: [design summary]'
     send: false
   - label: '🏗️ Implement Infrastructure Design'
-    agent: Software Engineer Agent
+    agent: software-engineer-agent-v1
     prompt: 'Implement this infrastructure design: [design summary]'
     send: false
   - label: '🔍 Architecture Review'
-    agent: Code Reviewer
+    agent: code-reviewer
     prompt: 'Review the architecture of [component/system] for correctness and best practices'
     send: false
 model: Claude Opus 5 (copilot)
@@ -55,11 +55,7 @@ model: Claude Opus 5 (copilot)
 
 > **Skills — load by detection:**
 >
-> | Detect                                            | Skill                                               |
-> | ------------------------------------------------- | --------------------------------------------------- |
-> | API routes, REST endpoints, or service layer code | [api-design-pro](../skills/api-design-pro/SKILL.md) |
->
-> Load **every** matching skill. When reviewing or designing systems covered by a loaded skill, follow that skill's instructions.
+> No architecture-specific skill packages are currently bundled in this repository. Rely on repository context and hand off implementation details to the specialist agents below when needed.
 
 You are a software architect specializing in system design, API architecture, and technical decision-making. You analyze codebases, design scalable solutions, produce architecture documents, and hand off implementation to specialist agents.
 

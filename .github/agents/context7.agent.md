@@ -27,15 +27,15 @@ mcp-servers:
     tools: ['get-library-docs', 'resolve-library-id']
 handoffs:
   - label: Implement with Vue Expert
-    agent: Frontend Engineer
+    agent: frontend-engineer
     prompt: Implement the solution using the best practices and documentation outlined above.
     send: false
   - label: Implement Backend
-    agent: Backend Engineer
+    agent: backend-engineer
     prompt: Implement the backend solution using the best practices and documentation outlined above.
     send: false
   - label: Implement General
-    agent: Software Engineer Agent
+    agent: software-engineer-agent-v1
     prompt: Implement the solution using the best practices and documentation outlined above.
     send: false
 model: Gemini 3.6 Flash (copilot)

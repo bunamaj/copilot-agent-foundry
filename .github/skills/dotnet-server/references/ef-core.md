@@ -78,18 +78,18 @@
               errorNumbersToAdd: null)));
   ```
 
-- Never capture a scoped `DbContext` in a background thread — create a new scope instead:
+- Never capture a scoped `DbContext` in fire-and-forget work — either await it in the request or queue it to a hosted background service that resolves its own scope:
 
   ```csharp
-  // Before (broken — DbContext disposed)
-  _ = Task.Run(() => context.SaveChangesAsync());
+  // Inline request work
+  await context.SaveChangesAsync();
 
-  // After
-  _ = Task.Run(async () =>
+  // Background work handled by a hosted service
+  await backgroundTaskQueue.QueueAsync(async (serviceProvider, ct) =>
   {
-      await using var scope = serviceScopeFactory.CreateAsyncScope();
+      await using var scope = serviceProvider.CreateAsyncScope();
       var ctx = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-      await ctx.SaveChangesAsync();
+      await ctx.SaveChangesAsync(ct);
   });
   ```
 

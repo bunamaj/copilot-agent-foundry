@@ -4,7 +4,7 @@ Rules for `INotification`, `INotificationHandler`, publishing strategies, and cu
 
 ## Defining Notifications
 
-- Use `INotification` for events that fan out to zero or more handlers. Notifications are fire-and-forget from the publisher's perspective.
+- Use `INotification` for events that fan out to zero or more handlers. The default `IPublisher.Publish` flow awaits the notification pipeline; treat it as fire-and-forget only when you explicitly queue it or swap in a custom background publisher.
 
   ```csharp
   // Notification — signals something happened

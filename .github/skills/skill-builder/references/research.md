@@ -9,7 +9,7 @@ Rules for gathering knowledge when building a skill. Use two or more complementa
 | 1        | Context7                | Libraries, frameworks, npm/PyPI packages    | `resolve-library-id` → `get-library-docs` |
 | 2        | Direct documentation    | Platforms, SDKs, changelogs, release notes  | `web/fetch`, `web/githubRepo`             |
 | 3        | User-provided docs      | Internal tools, proprietary APIs, overrides | Pasted/attached content                   |
-| 4        | Existing workspace code | Current usage patterns, project conventions | `read_file`, `grep_search`                |
+| 4        | Existing workspace code | Current usage patterns, project conventions | `read/readFile`, `search/textSearch`      |
 
 ## Source A: Context7 (Primary)
 

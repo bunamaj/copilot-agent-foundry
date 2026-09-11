@@ -27,7 +27,7 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.x'
-      - run: dotnet test --no-build --verbosity normal
+      - run: dotnet test --verbosity normal
 ```
 
 ## Azure Pipelines
@@ -51,15 +51,17 @@ steps:
 
 ## GitLab CI/CD
 
-GitLab requires Docker-in-Docker (DinD). Set `DOCKER_HOST` to point to the DinD socket:
+GitLab requires Docker-in-Docker (DinD). If you use the non-TLS socket, disable DinD TLS so the client and daemon agree on the same endpoint:
 
 ```yaml
 # .gitlab-ci.yml
 services:
-  - docker:dind
+  - name: docker:dind
+    command: ["--tls=false"]
 
 variables:
   DOCKER_HOST: tcp://docker:2375
+  DOCKER_TLS_CERTDIR: ""
 
 test:
   image: mcr.microsoft.com/dotnet/sdk:8.0

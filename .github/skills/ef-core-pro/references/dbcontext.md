@@ -50,6 +50,13 @@ public class TenantScopedFactory(IDbContextFactory<AppDbContext> pooledFactory, 
         context.TenantId = tenant?.TenantId ?? -1;
         return context;
     }
+
+    public async Task<AppDbContext> CreateDbContextAsync(CancellationToken cancellationToken = default)
+    {
+        var context = await pooledFactory.CreateDbContextAsync(cancellationToken);
+        context.TenantId = tenant?.TenantId ?? -1;
+        return context;
+    }
 }
 
 // 3. Register scoped factory + scoped context resolution

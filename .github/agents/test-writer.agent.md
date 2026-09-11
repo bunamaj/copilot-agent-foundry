@@ -30,11 +30,11 @@ tools:
   ]
 handoffs:
   - label: Research Test Patterns
-    agent: Context7-Expert
+    agent: context7
     prompt: Help me understand testing library APIs and patterns for the code I'm testing
     send: false
   - label: Review Tests
-    agent: Code Reviewer
+    agent: code-reviewer
     prompt: Review the quality and coverage of the test suite I just generated
     send: false
 model: Gemini 3.6 Flash (copilot)
@@ -46,17 +46,8 @@ model: Gemini 3.6 Flash (copilot)
 >
 > | Detect                                                               | Skill                                                       |
 > | -------------------------------------------------------------------- | ----------------------------------------------------------- |
-> | `fastify` in package.json or `*.ts` imports from `fastify`           | [fastify-pro](../skills/fastify-pro/SKILL.md)               |
-> | Supabase config, `supabase/` dir, or `@supabase/supabase-js` in deps | [supabase-pro](../skills/supabase-pro/SKILL.md)             |
-> | `pb_migrations/`, `pocketbase` binary, or PocketBase SDK in deps     | [pocketbase-pro](../skills/pocketbase-pro/SKILL.md)         |
 > | `*.csproj`, `Program.cs`, or `appsettings.json`                      | [dotnet-server](../skills/dotnet-server/SKILL.md)           |
-> | `go.mod`, `go.sum`, or `*.go` files                                  | [golang-api](../skills/golang-api/SKILL.md)                 |
-> | `*.vue` files or `vue` in package.json                               | [vue-pro](../skills/vue-pro/SKILL.md)                       |
-> | `*.swift` files or Xcode project structure                           | [swiftui-pro](../skills/swiftui-pro/SKILL.md)               |
-> | `build.gradle.kts`, `*.kt` files, or Android project structure       | [android-kotlin-pro](../skills/android-kotlin-pro/SKILL.md) |
-> | `pubspec.yaml` or Flutter project structure                          | [flutter-pro](../skills/flutter-pro/SKILL.md)               |
-> | `Dockerfile` or `docker-compose.yml`                                 | [docker-pro](../skills/docker-pro/SKILL.md)                 |
-> | `Caddyfile` or Caddy configuration                                   | [caddy-pro](../skills/caddy-pro/SKILL.md)                   |
+> | `Dockerfile`, `compose.yaml`, `compose.yml`, `docker-compose.yaml`, `docker-compose.yml` | [docker-pro](../skills/docker-pro/SKILL.md) |
 >
 > Load **every** matching skill. Consult loaded skills for framework-specific test patterns, mocking strategies, and code examples.
 

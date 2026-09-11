@@ -30,15 +30,15 @@ tools:
   ]
 handoffs:
   - label: Research with Context7
-    agent: Context7-Expert
+    agent: context7
     prompt: Research the following library/framework question using up-to-date documentation.
     send: false
   - label: Review Implementation
-    agent: Code Reviewer
+    agent: code-reviewer
     prompt: Review the implementation for correctness, security, performance, and style consistency.
     send: false
   - label: Generate Tests
-    agent: Test Writer
+    agent: test-writer
     prompt: Generate tests for the implementation.
     send: false
 model: Claude Sonnet 5 (copilot)

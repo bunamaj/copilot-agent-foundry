@@ -154,7 +154,7 @@ var postgres = new PostgreSqlBuilder("postgres:16.2").Build();
 For containers that run a task and exit (e.g., EF Core migrations), use `WaitStrategyMode.OneShot` (see `references/wait-strategies.md`):
 
 ```csharp
-var migrationContainer = new ContainerBuilder().WithImage("my-app:latest")
+var migrationContainer = new ContainerBuilder().WithImage("my-app:1.0.0")
     .WithCommand("migrate")
     .WithWaitStrategy(Wait.ForUnixContainer()
         .UntilMessageIsLogged("Migration completed",

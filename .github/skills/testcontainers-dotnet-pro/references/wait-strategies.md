@@ -48,7 +48,7 @@ _ = Wait.ForUnixContainer()
 _ = Wait.ForUnixContainer()
     .UntilHttpRequestIsSucceeded(r => r
         .ForPath("/health")
-        .ForStatusCodeMatching(sc => sc >= HttpStatusCode.OK && sc < HttpStatusCode.MultipleChoices));
+        .ForStatusCodeMatching(sc => (int)sc >= (int)HttpStatusCode.OK && (int)sc < (int)HttpStatusCode.MultipleChoices));
 
 // HTTPS endpoint
 _ = Wait.ForUnixContainer()
