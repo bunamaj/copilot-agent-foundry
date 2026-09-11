@@ -1,0 +1,39 @@
+name: Validate Skills
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check YAML Frontmatter
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Run Schema Validator
+        run: |
+          python -c '
+          import glob, yaml, sys
+          errors = False
+          for f in glob.glob("**/SKILL.md", recursive=True):
+              with open(f) as file:
+                  content = file.read()
+                  if content.startswith("---"):
+                      try:
+                          fm = yaml.safe_load(content.split("---")[1])
+                          if "name" not in fm or "description" not in fm:
+                              print(f"Missing required fields in {f}")
+                              errors = True
+                      except Exception as e:
+                          print(f"Malformed YAML in {f}: {e}")
+                          errors = True
+          if errors:
+              sys.exit(1)
+          '
