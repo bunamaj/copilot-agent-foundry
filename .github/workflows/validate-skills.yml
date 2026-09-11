@@ -1,0 +1,62 @@
+name: Validate Skills
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify Frontmatter Fields
+        run: |
+          ruby <<'RUBY'
+          require "yaml"
+
+          errors = 0
+
+          Dir.glob("**/SKILL.md").sort.each do |file|
+            lines = File.readlines(file, chomp: false)
+
+            unless lines.first&.strip == "---"
+              puts "Error: #{file} missing leading '---'"
+              errors = 1
+              next
+            end
+
+            closing_offset = lines[1..]&.find_index { |line| line.strip == "---" }
+            if closing_offset.nil?
+              puts "Error: #{file} missing closing '---'"
+              errors = 1
+              next
+            end
+
+            closing_index = closing_offset + 1
+            frontmatter = lines[1...closing_index].join
+
+            begin
+              data = YAML.safe_load(frontmatter, permitted_classes: [], aliases: false) || {}
+            rescue Psych::SyntaxError => e
+              puts "Error: #{file} has invalid YAML frontmatter (#{e.message})"
+              errors = 1
+              next
+            end
+
+            %w[name description].each do |field|
+              if data[field].to_s.strip.empty?
+                puts "Error: #{file} missing frontmatter field '#{field}'"
+                errors = 1
+              end
+            end
+          end
+
+          abort("Validation failed.") unless errors.zero?
+          puts "All SKILL.md files passed validation!"
+          RUBY
