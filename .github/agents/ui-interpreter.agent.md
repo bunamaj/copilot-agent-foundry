@@ -34,7 +34,7 @@ handoffs:
     agent: code-reviewer
     prompt: 'Review the implementation plan and flag any concerns before we build'
     send: false
-model: Claude Opus 5 (copilot)
+model: Gemini 3.8 Flash (copilot)
 ---
 
 # UI Interpreter

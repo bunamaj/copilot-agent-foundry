@@ -15,17 +15,9 @@ tools:
     'edit/createDirectory',
     'read/readFile',
     'read/problems',
-    'read/terminalLastCommand',
-    'read/terminalSelection',
-    'execute/runInTerminal',
-    'execute/getTerminalOutput',
-    'vscode/extensions',
-    'vscode/getProjectSetupInfo',
-    'vscode/runCommand',
     'vscode/askQuestions',
     'web/fetch',
     'web/githubRepo',
-    'agent/runSubagent',
   ]
 handoffs:
   - label: '📖 Research with Context7'
@@ -48,7 +40,7 @@ handoffs:
     agent: code-reviewer
     prompt: 'Review the architecture of [component/system] for correctness and best practices'
     send: false
-model: Claude Opus 5 (copilot)
+model: Claude Opus 5.5 (copilot)
 ---
 
 # Architect

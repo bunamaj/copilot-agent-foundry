@@ -16,18 +16,13 @@ tools:
     'read/readFile',
     'read/problems',
     'read/terminalLastCommand',
-    'read/terminalSelection',
     'execute/runInTerminal',
     'execute/getTerminalOutput',
     'execute/createAndRunTask',
     'execute/testFailure',
-    'vscode/extensions',
-    'vscode/getProjectSetupInfo',
-    'vscode/runCommand',
     'vscode/askQuestions',
     'web/fetch',
     'web/githubRepo',
-    'agent/runSubagent',
   ]
 handoffs:
   - label: '📖 Research with Context7'
@@ -54,7 +49,7 @@ handoffs:
     agent: architect
     prompt: 'Review the API design for consistency, scalability, and best practices'
     send: false
-model: Claude Sonnet 5 (copilot)
+model: Claude Sonnet 5.5 (copilot)
 ---
 
 # Backend Engineer

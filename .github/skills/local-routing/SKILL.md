@@ -41,6 +41,8 @@ The core agent roster lives in `rug-routing`. The table below lists all **option
 | 6    | **Product Owner**               | Product & backlog          | User stories, job stories, epics, features, backlog decomposition, story splitting, story mapping, acceptance criteria, product discovery | workmaker-pro                                                               |
 | 7    | **UI Interpreter**              | UI from images             | Any task providing a screenshot, wireframe, mockup, or design image with an ask to build, analyze, or plan its implementation            | ui-interpreter                                                              |
 | 8    | **Context Manager**             | Context pruning            | Assembling a bounded context packet (code slices + diffs) before dispatching a large or cross-file task to an implementation agent       | — (read-only, no skills)                                                   |
+| 9    | **Terraform Expert**            | Infrastructure as Code     | Terraform/OpenTofu configs, modules, state operations, providers, backends, plan/apply pipelines, IaC refactoring (`moved`/`import`)       | — (domain knowledge in agent body)                                         |
+| 10   | **AWS Cloud Expert**            | AWS architecture           | AWS service selection, IAM policies, VPC/networking, serverless/containers, observability, cost optimization, Well-Architected reviews   | — (domain knowledge in agent body)                                         |
 
 ---
 
@@ -55,34 +57,8 @@ Add rows to route specific file patterns to the correct specialist agent. Uncomm
 | `docs/ARCHITECTURE*.md`, `docs/DESIGN_PATTERNS.md`, `docs/REPO_ANALYSIS.md`, `docs/MES_QUALITY_ANALYSIS.md` | **Architect** | Architecture and design documentation |
 | `docs/**` | **Architect** | Any docs-layer file — design, runbooks, analysis |
 | `Dockerfile*`, `docker-compose*`, `azure-pipeline.yml`, `local/**` | **Software Engineer Agent** | Container and CI/CD config — no dedicated Infra agent in this repo |
-
-<!-- Uncomment if you have a repo-specific override for an existing core route: -->
-<!-- | `apps/admin/**` | **Frontend Engineer** | Admin panel uses Vue, not generic SW Engineer | -->
-
-<!-- Uncomment Backend Engineer patterns when backend-engineer is enabled: -->
-<!-- | `apps/backend/**`, `routes/**`, `plugins/**`, `**/server.*`, `**/api/**` | **Backend Engineer** | Server-side code — adjust paths to your repo structure | -->
-
-<!-- Uncomment Frontend Engineer patterns when frontend-engineer is enabled: -->
-<!-- | `apps/frontend/**`, `components/**`, `views/**`, `stores/**`, `composables/**` | **Frontend Engineer** | Browser-side code — adjust paths to your repo structure | -->
-
-<!-- Uncomment Mobile Engineer patterns when mobile-engineer is enabled: -->
-<!-- | `**/*.swift`, `**/*.swiftui`, `*.xcodeproj/**`, `*.xcworkspace/**`, `**/Info.plist` | **Mobile Engineer** | iOS / SwiftUI files | -->
-<!-- | `**/*.kt`, `**/*.kts`, `**/AndroidManifest.xml`, `**/build.gradle*`, `**/res/**` | **Mobile Engineer** | Android / Kotlin files | -->
-<!-- | `**/lib/**` (Flutter), `**/pubspec.yaml`, `**/*.dart` | **Mobile Engineer** | Flutter / Dart files | -->
-
-<!-- Uncomment Infrastructure Engineer patterns when infrastructure-engineer is enabled: -->
-<!-- | `Dockerfile*`, `docker-compose*`, `Caddyfile*`, `.github/workflows/**`, `*.yml` (CI) | **Infrastructure Engineer** | Container and CI/CD config | -->
-<!-- | `pnpm-workspace.yaml`, `turbo.json`, `nx.json`, monorepo config | **Infrastructure Engineer** | Monorepo tooling | -->
-
-<!-- Uncomment Architect patterns when architect is enabled: -->
-<!-- | `docs/architecture*`, `docs/ARCHITECTURE.md`, API design docs | **Architect** | Architecture documentation and design | -->
-
-<!-- Uncomment Test Writer patterns when test-writer is enabled: -->
-<!-- | `**/*.test.*`, `**/*.spec.*`, `**/__tests__/**` | **Test Writer** | Test files — route here for test generation/updates | -->
-
-<!-- Uncomment Full-Stack Engineer patterns when full-stack-engineer is enabled: -->
-<!-- | `libs/shared/**` (shared types used by both frontend + backend) | **Full-Stack Engineer** | Cross-layer shared code | -->
-<!-- | Cross-layer changes spanning frontend + backend in one feature | **Full-Stack Engineer** | End-to-end feature work | -->
+| `**/*.tf`, `**/*.tfvars`, `**/*.tftest.hcl`, `**/.terraform.lock.hcl`, `**/terragrunt.hcl` | **Terraform Expert** | Terraform/OpenTofu code — route AWS design questions to AWS Cloud Expert first |
+| `**/cdk.json`, `**/template.y*ml` (CloudFormation/SAM), `**/*.iam.json`, IAM policy documents, AWS architecture docs | **AWS Cloud Expert** | AWS-specific infrastructure and IAM definitions |
 
 ---
 
@@ -96,19 +72,14 @@ Route tasks to the correct agent based on the current phase of work. Uncomment r
 | **Implementation** — API design, system architecture, service decomposition, docs | **Architect** | Architecture decisions and design docs |
 | **Implementation** — End-to-end feature spanning multiple layers | **Full-Stack Engineer** | Cross-layer feature implementation |
 | **Implementation** — UI components, state, composables, service workers, PWA | **Frontend Engineer** | Browser-side production code |
-
-<!-- | **Implementation** — iOS, Android, or Flutter native code | **Mobile Engineer** | Native mobile production code | -->
-<!-- | **Implementation** — Docker, Caddy, CI/CD, monorepo tooling, deployment | **Infrastructure Engineer** | DevOps and build system work | -->
-
+| **Implementation** — Terraform/OpenTofu modules, state, providers, IaC pipelines | **Terraform Expert** | Infrastructure code; never applies without user approval |
+| **Implementation** — AWS service selection, IAM policy design, VPC/networking, cost review | **AWS Cloud Expert** | Design first, then hand off to Terraform Expert for IaC implementation |
 | **Testing** — writing or updating tests post-implementation | **Test Writer** | Launch AFTER implementation for test coverage |
 | **Story writing** — user stories, job stories, acceptance criteria | **Product Owner** | Story and work item generation |
 | **Backlog** — epics, features, story decomposition, story splitting, story mapping | **Product Owner** | Backlog management and discovery |
 | **UI from image** — any task with a screenshot, wireframe, mockup, or design file | **UI Interpreter** | Route here BEFORE Frontend Engineer; produces briefs then delegates |
 | **Context assembly** — task touches >5 files or spans layers | **Context Manager** | Route here BEFORE the implementation agent; emits a bounded context packet |
 | **Session transfer** — context window near limit, or state must move between agents | **Handoff Agent** | Emits the structured JSON state payload (`spec`, `modified_files`, `blockers`) |
-
-<!-- | **CI monitoring** — pipeline status, build failures | **CI Monitor Subagent** | Thin helper, single tool-call per invocation | -->
-<!-- | **App store deployment** — signing, submission, profiles | **App Store Deployment Expert** | Code signing, provisioning, store metadata | -->
 
 ---
 
@@ -123,11 +94,8 @@ Add rows to route specific bug symptoms to the correct diagnosis agent. Uncommen
 | Npgsql / SQL errors, `DbOperationException`, `IUnitOfWork` failures | **Backend Engineer** | Data access errors |
 | UI rendering bugs, state management issues, routing errors | **Frontend Engineer** | Browser-side rendering |
 | API contract mismatches, schema validation errors across services | **Architect** | Cross-service design issues |
-
-<!-- | iOS crashes, SwiftUI layout issues, Xcode build errors | **Mobile Engineer** | iOS platform issues | -->
-<!-- | Docker build failures, container networking issues | **Infrastructure Engineer** | Container issues | -->
-<!-- | CI pipeline failures, deployment errors | **Infrastructure Engineer** | CI/CD issues | -->
-<!-- | Code signing errors, provisioning profile issues, store rejection | **App Store Deployment Expert** | Distribution issues | -->
+| `terraform plan/apply` errors, state lock or drift, provider/version conflicts, module errors | **Terraform Expert** | IaC tooling failures |
+| `AccessDenied`, IAM policy errors, VPC connectivity/security group issues, Lambda/ECS/RDS runtime failures on AWS, unexpected AWS costs | **AWS Cloud Expert** | AWS platform and permission issues |
 
 ---
 
@@ -135,15 +103,17 @@ Add rows to route specific bug symptoms to the correct diagnosis agent. Uncommen
 
 Shows which optional agents can hand off to which. Uncomment the full matrix when you've enabled optional agents. A ✅ means the row agent can initiate a handoff to the column agent.
 
-| From ↓ \ To →         | Context7 | Backend | Frontend | Architect | Full-Stack | Code Reviewer | Test Writer | SW Engineer | Foundry | Product Owner | UI Interpreter |
-| --------------------- | -------- | ------- | -------- | --------- | ---------- | ------------- | ----------- | ----------- | ------- | ------------- | -------------- |
-| **Architect**         | ✅       | ✅      | ✅       | —         | —          | ✅            | —           | —           | —       | ✅            | —              |
-| **Backend Engineer**  | ✅       | —       | ✅       | ✅        | —          | ✅            | ✅          | —           | —       | —             | —              |
-| **Frontend Engineer** | ✅       | ✅      | —        | —         | —          | ✅            | ✅          | —           | —       | —             | —              |
-| **Full-Stack Engineer**| ✅      | —       | —        | ✅        | —          | ✅            | ✅          | —           | —       | —             | —              |
-| **Test Writer**       | ✅       | —       | —        | —         | —          | ✅            | —           | —           | —       | —             | —              |
-| **Product Owner**     | —        | —       | —        | ✅        | —          | —             | —           | ✅          | —       | —             | —              |
-| **UI Interpreter**    | —        | ✅      | ✅       | —         | —          | ✅            | ✅          | —           | —       | —             | —              |
+| From ↓ \ To →         | Context7 | Backend | Frontend | Architect | Full-Stack | Code Reviewer | Test Writer | SW Engineer | Foundry | Product Owner | UI Interpreter | Terraform | AWS Cloud |
+| --------------------- | -------- | ------- | -------- | --------- | ---------- | ------------- | ----------- | ----------- | ------- | ------------- | -------------- | --------- | --------- |
+| **Architect**         | ✅       | ✅      | ✅       | —         | —          | ✅            | —           | —           | —       | ✅            | —              | —         | —         |
+| **Backend Engineer**  | ✅       | —       | ✅       | ✅        | —          | ✅            | ✅          | —           | —       | —             | —              | —         | —         |
+| **Frontend Engineer** | ✅       | ✅      | —        | —         | —          | ✅            | ✅          | —           | —       | —             | —              | —         | —         |
+| **Full-Stack Engineer**| ✅      | —       | —        | ✅        | —          | ✅            | ✅          | —           | —       | —             | —              | —         | —         |
+| **Test Writer**       | ✅       | —       | —        | —         | —          | ✅            | —           | —           | —       | —             | —              | —         | —         |
+| **Product Owner**     | —        | —       | —        | ✅        | —          | —             | —           | ✅          | —       | —             | —              | —         | —         |
+| **UI Interpreter**    | —        | ✅      | ✅       | —         | —          | ✅            | ✅          | —           | —       | —             | —              | —         | —         |
+| **Terraform Expert**  | ✅       | —       | —        | ✅        | —          | ✅            | —           | ✅          | —       | —             | —              | —         | ✅        |
+| **AWS Cloud Expert**  | ✅       | —       | —        | ✅        | —          | ✅            | —           | ✅          | —       | —             | —              | ✅        | —         |
 
 ---
 
@@ -163,9 +133,9 @@ Every agent must declare a `model:` in its frontmatter. An agent with no `model:
 
 | Tier | Purpose | Approved models | Agents |
 | ---- | ------- | --------------- | ------ |
-| **Tier 1** | Heavy reasoning — design, judgment, correctness | `Claude Opus 5 (copilot)`, `GPT-5.5 (copilot)` | Architect, Product Owner, Code Reviewer, Foundry |
-| **Tier 2** | Standard execution — writing and modifying code | `Claude Sonnet 5 (copilot)`, `DeepSeek V4 Pro (copilot)`, `Gemini 3.6 Flash (copilot)` | Backend Engineer, Frontend Engineer, Full-Stack Engineer, Software Engineer Agent |
-| **Tier 3** | Low-latency routing — retrieval, pruning, extraction, scaffolding | `Gemini 3.6 Flash (copilot)`, `GPT-5.3 Instant (copilot)`, `DeepSeek V4 Flash (copilot)` | Context Manager, Context7-Expert, Test Writer, Handoff Agent, UI Interpreter |
+| **Tier 1** | Heavy reasoning — design, judgment, correctness | `Claude Opus 5.5 (copilot)`, `GPT-6.1 Sol (copilot)` | Architect, Code Reviewer |
+| **Tier 2** | Standard execution — writing and modifying code | `Claude Sonnet 5.5 (copilot)`, `GPT-6.1 Terra (copilot)`, `Gemini 3.8 Flash (copilot)` | Backend Engineer, Frontend Engineer, Full-Stack Engineer, Software Engineer Agent, Terraform Expert, AWS Cloud Expert, Product Owner, Foundry |
+| **Tier 3** | Low-latency routing — retrieval, pruning, extraction, scaffolding | `Claude Haiku 5.5 (copilot)`, `GPT-6 Luna (copilot)`, `Gemini 3.8 Flash (copilot)` | Context Manager, Context7-Expert, Test Writer, Handoff Agent, UI Interpreter |
 
 Rules:
 

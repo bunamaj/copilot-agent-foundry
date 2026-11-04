@@ -13,7 +13,7 @@ tools:
     'edit/editFiles',
     'vscode/askQuestions',
   ]
-model: Claude Opus 5 (copilot)
+model: Claude Sonnet 5.5 (copilot)
 ---
 
 # Product Owner

@@ -16,18 +16,13 @@ tools:
     'read/readFile',
     'read/problems',
     'read/terminalLastCommand',
-    'read/terminalSelection',
     'execute/runInTerminal',
     'execute/getTerminalOutput',
     'execute/createAndRunTask',
     'execute/testFailure',
-    'vscode/extensions',
-    'vscode/getProjectSetupInfo',
-    'vscode/runCommand',
     'vscode/askQuestions',
     'web/fetch',
     'web/githubRepo',
-    'agent/runSubagent',
   ]
 handoffs:
   - label: '📖 Research with Context7'
@@ -50,7 +45,7 @@ handoffs:
     agent: software-engineer-agent-v1
     prompt: 'Assist with frontend build configuration or deployment pipeline'
     send: false
-model: Claude Sonnet 5 (copilot)
+model: Claude Sonnet 5.5 (copilot)
 ---
 
 # Frontend Engineer

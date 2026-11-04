@@ -24,6 +24,8 @@ Central hub for reusable GitHub Copilot **custom agents** and **skills**. This r
 | **Backend Engineer** | Server-side specialist for APIs, databases, and auth; dynamically loads framework skills (.NET, etc.) based on project detection. |
 | **Frontend Engineer** | Builds, reviews, and optimizes frontend apps — component architecture, state management, styling, accessibility. |
 | **Full-Stack Engineer** | Implements features end-to-end across frontend, backend, database, and infrastructure. |
+| **Terraform Expert** | Terraform/OpenTofu specialist — module design, state management, providers, testing, and safe plan/apply workflows. |
+| **AWS Cloud Expert** | AWS solutions specialist — service selection, Well-Architected design, IAM/security, networking, and cost optimization. |
 | **Code Reviewer** | Post-implementation review focused on correctness, security, performance, and style consistency. |
 | **Test Writer** | Generates comprehensive, maintainable test suites, loading framework skills as needed. |
 | **Product Owner** | User story generation, backlog management, and product discovery. |
