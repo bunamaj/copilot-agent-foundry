@@ -26,7 +26,7 @@ handoffs:
     agent: code-reviewer
     prompt: Review using only the diffs in the context packet above.
     send: false
-model: Gemini 3.6 Flash (copilot)
+model: Claude Haiku 5.5 (copilot)
 ---
 
 # Context Manager

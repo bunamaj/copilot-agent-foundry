@@ -15,18 +15,13 @@ tools:
     'read/readFile',
     'read/problems',
     'read/terminalLastCommand',
-    'read/terminalSelection',
     'execute/runInTerminal',
     'execute/getTerminalOutput',
     'execute/createAndRunTask',
     'execute/testFailure',
-    'vscode/extensions',
-    'vscode/getProjectSetupInfo',
-    'vscode/runCommand',
     'vscode/askQuestions',
     'web/fetch',
     'web/githubRepo',
-    'agent/runSubagent',
   ]
 handoffs:
   - label: Research Test Patterns
@@ -37,7 +32,7 @@ handoffs:
     agent: code-reviewer
     prompt: Review the quality and coverage of the test suite I just generated
     send: false
-model: Gemini 3.6 Flash (copilot)
+model: Gemini 3.8 Flash (copilot)
 ---
 
 # Test Writer Agent

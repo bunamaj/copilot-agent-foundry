@@ -4,15 +4,13 @@ description: 'Design, create, and maintain VS Code agent infrastructure — agen
 argument-hint: 'Describe what you want to build or edit (e.g., "Create a security reviewer agent", "Build a Tailwind CSS v4 skill")'
 tools:
   [
-    vscode,
+    vscode/askQuestions,
     execute,
     read,
     agent,
     edit,
     search,
     web,
-    browser,
-    azure-mcp/search,
     io.github.upstash/context7/*,
     todo,
   ]
@@ -22,7 +20,7 @@ handoffs:
     agent: code-reviewer
     prompt: Review the agent/skill I just created for completeness, accuracy, and format adherence.
     send: false
-model: Claude Opus 5 (copilot)
+model: Claude Sonnet 5.5 (copilot)
 ---
 
 # Foundry — Agent & Skill Infrastructure Specialist

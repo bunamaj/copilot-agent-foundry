@@ -13,16 +13,12 @@ tools:
     'read/readFile',
     'read/problems',
     'read/terminalLastCommand',
-    'read/terminalSelection',
     'execute/runInTerminal',
     'execute/getTerminalOutput',
     'execute/testFailure',
-    'vscode/extensions',
-    'vscode/getProjectSetupInfo',
     'vscode/askQuestions',
     'web/fetch',
     'web/githubRepo',
-    'agent/runSubagent',
   ]
 handoffs:
   - label: Research Best Practices
@@ -33,7 +29,7 @@ handoffs:
     agent: test-writer
     prompt: Code review identified missing test coverage. Please generate comprehensive tests for the following areas:\n\n[Areas needing tests]
     send: false
-model: Claude Opus 5 (copilot)
+model: Claude Opus 5.5 (copilot)
 ---
 
 # Code Reviewer Agent
