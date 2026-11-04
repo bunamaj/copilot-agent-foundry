@@ -1,0 +1,56 @@
+name: Sync agents to repos
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/agents/**'
+      - '.github/prompts/**'
+      - '.github/instructions/**'
+      - '.github/copilot-instructions.md'
+      - 'sync-targets.txt'
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Sync Copilot files to target repos
+        env:
+          GH_TOKEN: ${{ secrets.SYNC_TOKEN }}
+        run: |
+          gh auth setup-git
+          git config --global user.name "agent-sync-bot"
+          git config --global user.email "agent-sync-bot@users.noreply.github.com"
+
+          while read -r repo || [ -n "$repo" ]; do
+            case "$repo" in ''|\#*) continue;; esac
+            echo "::group::Syncing $repo"
+            rm -rf target
+            gh repo clone "$repo" target -- --depth 1
+
+            for d in agents prompts instructions; do
+              if [ -d ".github/$d" ]; then
+                mkdir -p "target/.github/$d"
+                rsync -a ".github/$d/" "target/.github/$d/"
+              fi
+            done
+            [ -f .github/copilot-instructions.md ] && cp .github/copilot-instructions.md target/.github/
+
+            cd target
+            if [ -n "$(git status --porcelain)" ]; then
+              git checkout -B agent-sync
+              git add .github
+              git commit -m "Sync agents from ${GITHUB_REPOSITORY}@${GITHUB_SHA::7}"
+              git push -f origin agent-sync
+              gh pr create --title "Sync latest agents" \
+                --body "Automated sync from ${GITHUB_REPOSITORY}" \
+                --head agent-sync || echo "PR already open — updated it."
+            else
+              echo "Already up to date."
+            fi
+            cd ..
+            echo "::endgroup::"
+          done < sync-targets.txt
