@@ -6,6 +6,7 @@ description: >-
   delegates structured implementation briefs to specialist agents.
   Trigger keywords: screenshot, wireframe, mockup, design, image, build from image,
   build from screenshot, UI from image, build this UI, build from design.
+target: vscode
 tools:
   [
     'search/codebase',
@@ -19,7 +20,7 @@ tools:
     'agent/runSubagent',
     'todo',
   ]
-agents: ['Frontend Engineer', 'Test Writer', 'Backend Engineer', 'Code Reviewer']
+agents: ['frontend-engineer', 'test-writer', 'backend-engineer', 'code-reviewer']
 argument-hint: 'Attach or paste a UI image (screenshot, wireframe, or mockup) to analyze and build'
 handoffs:
   - label: 'Implement Components'
@@ -112,13 +113,13 @@ Read `.github/skills/ui-interpreter/SKILL.md` at the start of every session. Tha
 
 ## Delegation Briefs
 
-### → Frontend Engineer
+### → frontend-engineer
 [Full spec per references/delegation-brief.md]
 
-### → Test Writer
+### → test-writer
 [Test scenarios per references/delegation-brief.md]
 
-### → Backend Engineer *(only if API gap detected)*
+### → backend-engineer *(only if API gap detected)*
 [API contract per references/delegation-brief.md]
 
 ---
@@ -126,7 +127,7 @@ Read `.github/skills/ui-interpreter/SKILL.md` at the start of every session. Tha
 ## Ready to Delegate?
 
 Confirm which agents to dispatch:
-- [ ] Frontend Engineer
-- [ ] Test Writer
-- [ ] Backend Engineer
+- [ ] frontend-engineer
+- [ ] test-writer
+- [ ] backend-engineer
 ```

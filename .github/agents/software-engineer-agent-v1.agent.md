@@ -1,6 +1,7 @@
 ---
 description: 'Expert-level software engineering agent. Deliver production-ready, maintainable code. Execute systematically and specification-driven. Document comprehensively. Operate autonomously and adaptively.'
-name: 'Software Engineer Agent'
+target: vscode
+name: software-engineer-agent-v1
 tools:
   [
     'search/codebase',
@@ -24,7 +25,7 @@ tools:
     'web/githubRepo',
   ]
 handoffs:
-  - label: Research with Context7
+  - label: Research with context7
     agent: context7
     prompt: Research the following library/framework question using up-to-date documentation.
     send: false

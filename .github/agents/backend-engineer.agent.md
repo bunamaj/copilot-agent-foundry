@@ -1,7 +1,8 @@
 ---
-name: Backend Engineer
+name: backend-engineer
 description: >-
   Server-side specialist for APIs, databases, auth, and data services — dynamically loads framework skills (Fastify, Supabase, PocketBase, .NET, Go) based on project detection.
+target: vscode
 tools:
   [
     'search/codebase',
@@ -25,7 +26,7 @@ tools:
     'web/githubRepo',
   ]
 handoffs:
-  - label: '📖 Research with Context7'
+  - label: '📖 Research with context7'
     agent: context7
     prompt: 'Research [topic] for the backend implementation'
     send: false

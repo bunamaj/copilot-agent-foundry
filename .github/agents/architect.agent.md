@@ -1,7 +1,8 @@
 ---
-name: Architect
+name: architect
 description: >-
   Designs scalable systems, reviews architecture, and produces actionable specs that implementation agents execute.
+target: vscode
 tools:
   [
     'search/codebase',
@@ -20,7 +21,7 @@ tools:
     'web/githubRepo',
   ]
 handoffs:
-  - label: '📖 Research with Context7'
+  - label: '📖 Research with context7'
     agent: context7
     prompt: 'Research [topic] for architecture design'
     send: false

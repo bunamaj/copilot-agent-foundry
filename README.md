@@ -20,21 +20,21 @@ Central hub for reusable GitHub Copilot **custom agents** and **skills**. This r
 | Agent | Purpose |
 | --- | --- |
 | **RUG** (`rug-orchestrator`) | Pure orchestration agent — decomposes requests, delegates all work to subagents, validates outcomes, and repeats until complete. |
-| **Architect** | Designs scalable systems, reviews architecture, and produces actionable specs for implementation agents. |
-| **Backend Engineer** | Server-side specialist for APIs, databases, and auth; dynamically loads framework skills (.NET, etc.) based on project detection. |
-| **Frontend Engineer** | Builds, reviews, and optimizes frontend apps — component architecture, state management, styling, accessibility. |
+| **architect** | Designs scalable systems, reviews architecture, and produces actionable specs for implementation agents. |
+| **backend-engineer** | Server-side specialist for APIs, databases, and auth; dynamically loads framework skills (.NET, etc.) based on project detection. |
+| **frontend-engineer** | Builds, reviews, and optimizes frontend apps — component architecture, state management, styling, accessibility. |
 | **Full-Stack Engineer** | Implements features end-to-end across frontend, backend, database, and infrastructure. |
-| **Terraform Expert** | Terraform/OpenTofu specialist — module design, state management, providers, testing, and safe plan/apply workflows. |
-| **AWS Cloud Expert** | AWS solutions specialist — service selection, Well-Architected design, IAM/security, networking, and cost optimization. |
-| **Code Reviewer** | Post-implementation review focused on correctness, security, performance, and style consistency. |
-| **Test Writer** | Generates comprehensive, maintainable test suites, loading framework skills as needed. |
+| **terraform-expert** | Terraform/OpenTofu specialist — module design, state management, providers, testing, and safe plan/apply workflows. |
+| **aws-cloud-expert** | AWS solutions specialist — service selection, Well-Architected design, IAM/security, networking, and cost optimization. |
+| **code-reviewer** | Post-implementation review focused on correctness, security, performance, and style consistency. |
+| **test-writer** | Generates comprehensive, maintainable test suites, loading framework skills as needed. |
 | **Product Owner** | User story generation, backlog management, and product discovery. |
 | **UI Interpreter** | Analyzes screenshots/wireframes/mockups and turns them into structured implementation briefs for specialist agents. |
 | **Foundry** | Creates and maintains the agent/skill infrastructure itself (`.agent.md`, `.instructions.md`, `.prompt.md`, `SKILL.md`). |
 | **Context Manager** | Extracts minimal, token-bounded context packets for a target agent instead of dumping whole files. |
-| **Context7-Expert** | Answers library/framework questions using up-to-date documentation. |
+| **context7** | Answers library/framework questions using up-to-date documentation. |
 | **Handoff Agent** | Emits a structured JSON state payload to resume work in a new chat or hand off to another agent. |
-| **Software Engineer Agent** | General-purpose, expert-level engineering agent for production-ready, spec-driven implementation. |
+| **software-engineer-agent-v1** | General-purpose, expert-level engineering agent for production-ready, spec-driven implementation. |
 
 ## Skills (`.github/skills/`)
 

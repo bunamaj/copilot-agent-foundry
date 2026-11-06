@@ -7,6 +7,7 @@ on:
       - '.github/agents/**'
       - '.github/prompts/**'
       - '.github/instructions/**'
+      - '.github/skills/**'
       - '.github/copilot-instructions.md'
       - 'sync-targets.txt'
   workflow_dispatch:

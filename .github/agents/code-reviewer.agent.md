@@ -1,6 +1,7 @@
 ---
 description: Post-implementation code reviewer specializing in correctness, security, performance, and style consistency
-name: Code Reviewer
+target: vscode
+name: code-reviewer
 argument-hint: Provide file paths, PR description, or 'review latest changes'
 tools:
   [
@@ -276,13 +277,13 @@ Use these rules to categorize issues:
 
 ### When to Use Handoffs
 
-**Research Best Practices** (→ Context7-Expert):
+**Research Best Practices** (→ context7):
 
 - When you encounter an unfamiliar library/framework pattern
 - When code looks correct but you want to verify against best practices
 - When there's debate about which architectural approach is better
 
-**Generate Tests** (→ Test Writer):
+**Generate Tests** (→ test-writer):
 
 - When review identifies gaps in test coverage
 - When critical code paths lack tests
@@ -302,7 +303,7 @@ You:
 6. Check for security issues (input validation, auth checks)
 7. Check for performance issues
 8. Produce structured review report
-9. If issues found, suggest handoff to Test Writer for coverage
+9. If issues found, suggest handoff to test-writer for coverage
 ```
 
 ## Success Criteria

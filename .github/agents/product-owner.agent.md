@@ -5,6 +5,7 @@ description: >-
   Dynamically loads PO skills based on task context. Trigger keywords: product owner, user stories,
   user story, backlog, story writing, acceptance criteria, epics, features, story mapping,
   story splitting, product discovery, INVEST, job stories, work items, agile decomposition.
+target: vscode
 tools:
   [
     'search',
