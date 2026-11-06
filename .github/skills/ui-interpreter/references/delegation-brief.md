@@ -10,10 +10,10 @@ A delegation brief is a complete, self-contained specification that a receiving 
 
 ---
 
-## Frontend Engineer Brief
+## frontend-engineer Brief
 
 ```markdown
-### → Frontend Engineer
+### → frontend-engineer
 
 **Context:**
 [1–2 sentences: what screen this is, where it lives in the app, what user action leads to it]
@@ -57,10 +57,10 @@ PageWrapper
 
 ---
 
-## Test Writer Brief
+## test-writer Brief
 
 ```markdown
-### → Test Writer
+### → test-writer
 
 **Context:**
 [Same screen context as the frontend brief]
@@ -98,7 +98,7 @@ PageWrapper
 
 ---
 
-## Backend Engineer Brief
+## backend-engineer Brief
 
 Only include if the UI reveals an API requirement not currently met.
 
@@ -110,7 +110,7 @@ Include if:
 - Pagination, filtering, or sorting requires query params not currently supported
 
 ```markdown
-### → Backend Engineer
+### → backend-engineer
 
 **Context:**
 [What the UI needs and why current APIs are insufficient]
@@ -152,8 +152,8 @@ Before finalizing briefs:
 
 Delegate in this order:
 
-1. **Frontend Engineer first** — implement components
-2. **Test Writer second** — write tests (or in parallel for TDD)
-3. **Backend Engineer only if needed** — can run in parallel if API contract is clear
+1. **frontend-engineer first** — implement components
+2. **test-writer second** — write tests (or in parallel for TDD)
+3. **backend-engineer only if needed** — can run in parallel if API contract is clear
 
-For TDD workflows, invert 1 and 2: Test Writer writes failing tests, Frontend Engineer implements to make them pass.
+For TDD workflows, invert 1 and 2: test-writer writes failing tests, frontend-engineer implements to make them pass.

@@ -1,7 +1,8 @@
 ---
-name: Frontend Engineer
+name: frontend-engineer
 description: >-
   Builds, reviews, and optimizes frontend web applications with framework-aware skill loading for component architecture, state management, styling, accessibility, and progressive enhancement.
+target: vscode
 tools:
   [
     'search/codebase',
@@ -25,7 +26,7 @@ tools:
     'web/githubRepo',
   ]
 handoffs:
-  - label: '📖 Research with Context7'
+  - label: '📖 Research with context7'
     agent: context7
     prompt: 'Research [topic] for the frontend implementation'
     send: false

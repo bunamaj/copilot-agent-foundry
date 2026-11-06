@@ -1,6 +1,7 @@
 ---
 name: Foundry
 description: 'Design, create, and maintain VS Code agent infrastructure — agent files (.agent.md, .instructions.md, .prompt.md, copilot-instructions.md, AGENTS.md) and skill packages (SKILL.md + reference files)'
+target: vscode
 argument-hint: 'Describe what you want to build or edit (e.g., "Create a security reviewer agent", "Build a Tailwind CSS v4 skill")'
 tools:
   [
@@ -14,9 +15,9 @@ tools:
     io.github.upstash/context7/*,
     todo,
   ]
-agents: ['Context7-Expert']
+agents: ['context7']
 handoffs:
-  - label: Review with Code Reviewer
+  - label: Review with code-reviewer
     agent: code-reviewer
     prompt: Review the agent/skill I just created for completeness, accuracy, and format adherence.
     send: false

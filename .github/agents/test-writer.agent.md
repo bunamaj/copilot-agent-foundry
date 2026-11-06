@@ -1,6 +1,7 @@
 ---
 description: Test generation specialist that dynamically loads framework skills to write comprehensive, maintainable test suites
-name: Test Writer
+target: vscode
+name: test-writer
 tools:
   [
     'search/codebase',
@@ -275,8 +276,8 @@ tests/
 
 When you need help:
 
-- **Research Test Patterns** → Use Context7-Expert to look up testing library APIs, specific testing patterns, or framework-specific testing approaches
-- **Review Tests** → Hand off to Code Reviewer to get feedback on test quality, coverage gaps, and maintainability
+- **Research Test Patterns** → Use context7 to look up testing library APIs, specific testing patterns, or framework-specific testing approaches
+- **Review Tests** → Hand off to code-reviewer to get feedback on test quality, coverage gaps, and maintainability
 
 ## Output Format
 

@@ -2,6 +2,7 @@
 name: Full-Stack Engineer
 description: >-
   Cross-layer engineer that implements features end-to-end across frontend, backend, database, and infrastructure — dynamically loading all relevant framework skills.
+target: vscode
 tools:
   [
     'search/codebase',
@@ -25,7 +26,7 @@ tools:
     'web/githubRepo',
   ]
 handoffs:
-  - label: '📖 Research with Context7'
+  - label: '📖 Research with context7'
     agent: context7
     prompt: 'Research [topic] for the full-stack implementation'
     send: false
@@ -37,7 +38,7 @@ handoffs:
     agent: test-writer
     prompt: 'Write integration and unit tests for this full-stack feature'
     send: false
-  - label: '🏗️ Consult Architect'
+  - label: '🏗️ Consult architect'
     agent: architect
     prompt: 'Evaluate the system design for this cross-layer change'
     send: false
@@ -72,7 +73,7 @@ Implement features end-to-end across the full stack. You are the go-to agent whe
 
 ## When to Use This Agent
 
-Use when a task requires coordinated changes across **2+ layers** (e.g., new API endpoint + frontend UI + database migration). For single-layer work, prefer the specialized engineer — Backend Engineer for API-only changes, Frontend Engineer for UI-only work, Software Engineer Agent for deployment-only tasks.
+Use when a task requires coordinated changes across **2+ layers** (e.g., new API endpoint + frontend UI + database migration). For single-layer work, prefer the specialized engineer — backend-engineer for API-only changes, frontend-engineer for UI-only work, software-engineer-agent-v1 for deployment-only tasks.
 
 ## Expertise Areas
 

@@ -1,7 +1,8 @@
 ---
 name: Context Manager
 description: 'Context pruning specialist — extracts the minimal relevant code slices and diffs for a task and emits a token-bounded context packet. Never dumps repositories or full files.'
-argument-hint: 'Describe the task and target agent (e.g., "Backend Engineer needs context for adding a Listings command")'
+target: vscode
+argument-hint: 'Describe the task and target agent (e.g., "backend-engineer needs context for adding a Listings command")'
 tools:
   [
     'search/codebase',
@@ -14,15 +15,15 @@ tools:
     'read/problems',
   ]
 handoffs:
-  - label: Send Packet to Backend Engineer
+  - label: Send Packet to backend-engineer
     agent: backend-engineer
     prompt: Use only the context packet above. Do not re-scan the repository.
     send: false
-  - label: Send Packet to Frontend Engineer
+  - label: Send Packet to frontend-engineer
     agent: frontend-engineer
     prompt: Use only the context packet above. Do not re-scan the repository.
     send: false
-  - label: Send Packet to Code Reviewer
+  - label: Send Packet to code-reviewer
     agent: code-reviewer
     prompt: Review using only the diffs in the context packet above.
     send: false

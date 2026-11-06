@@ -88,10 +88,10 @@ See `references/handoffs.md` for detailed patterns.
 List of agent names this agent can delegate to as subagents (via `agent/runSubagent`).
 
 ```yaml
-agents: ['Context7-Expert', 'security-reviewer']
+agents: ['context7', 'security-reviewer']
 ```
 
-- Use the agent's `name:` field value (not the filename).
+- Use the agent's `name:` field value (not the filename). For agents whose `name:` is kebab-case, this typically matches the filename minus `.agent.md`.
 - Requires `agent` or `agent/runSubagent` in the `tools:` array to be useful.
 
 ## Syntax Rules
@@ -130,7 +130,7 @@ handoffs:
     agent: implementation-agent
     prompt: Apply the security fixes I recommended above
     send: false
-agents: ['Context7-Expert']
+agents: ['context7']
 ---
 ```
 
@@ -140,5 +140,5 @@ agents: ['Context7-Expert']
 - **Using invalid tool identifiers** — check `references/tools.md`; invalid IDs are silently ignored.
 - **Quoting booleans** — `send: 'false'` is a string, not a boolean. Use `send: false`.
 - **Forgetting the closing `---`** — YAML frontmatter must be enclosed by two `---` lines.
-- **Using filename instead of `name:` in `agents:`** — the `agents:` array references display names, not filenames.
+- **Using filename instead of `name:` in `agents:`** — the `agents:` array references the agent's `name:` value, which may differ from the filename (e.g., `name: Context Manager` vs. `context-manager.agent.md`).
 - **Overly vague `description:`** — "A helpful agent" tells users nothing. Be specific about what it does.

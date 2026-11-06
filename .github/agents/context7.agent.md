@@ -1,6 +1,7 @@
 ---
-name: Context7-Expert
+name: context7
 description: 'Expert in latest library versions, best practices, and correct syntax using up-to-date documentation'
+target: vscode
 argument-hint: 'Ask about specific libraries/frameworks (e.g., "Next.js routing", "React hooks", "Tailwind CSS")'
 tools:
   [

@@ -78,12 +78,12 @@ Before handing off the brief, verify:
 
 ## Delegation Briefs
 
-### → Frontend Engineer
+### → frontend-engineer
 [Full implementation spec]
 
-### → Test Writer
+### → test-writer
 [Test scenarios and edge cases]
 
-### → Backend Engineer (if needed)
+### → backend-engineer (if needed)
 [API contract or data requirements]
 ```
